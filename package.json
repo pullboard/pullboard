@@ -1,5 +1,5 @@
 {
-  "name": "dasher-mvp",
+  "name": "pullboard",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/colebemis/dasher-mvp.git"
+    "url": "git+https://github.com/colebemis/pullboard.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/colebemis/dasher-mvp/issues"
+    "url": "https://github.com/colebemis/pullboard/issues"
   },
-  "homepage": "https://github.com/colebemis/dasher-mvp#readme",
+  "homepage": "https://github.com/colebemis/pullboard#readme",
   "dependencies": {
     "next": "^6.1.1",
     "query-string": "^6.1.0",
