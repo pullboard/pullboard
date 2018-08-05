@@ -28,7 +28,13 @@ class QueryForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <input value={query} onChange={this.handleChange} />
+        <input
+          type="text"
+          aria-label="Query"
+          spellCheck={false}
+          value={query}
+          onChange={this.handleChange}
+        />
         {query !== router.query.query ? <button>Apply</button> : null}
       </form>
     )
