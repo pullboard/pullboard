@@ -1,14 +1,15 @@
 import { withRouter } from 'next/router'
-import { shape, string } from 'prop-types'
+import { func, shape, string } from 'prop-types'
 import { stringify } from 'query-string'
 import React, { Component } from 'react'
 
-class QueryForm extends Component {
+export class QueryForm extends Component {
   static propTypes = {
     router: shape({
       query: shape({
         query: string,
       }).isRequired,
+      push: func.isRequired,
     }).isRequired,
   }
 
