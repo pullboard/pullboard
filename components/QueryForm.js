@@ -13,7 +13,7 @@ class QueryForm extends Component {
   }
 
   state = {
-    query: this.props.router.query.query || '',
+    query: this.props.router.query.query,
   }
 
   handleChange = event => {
@@ -41,7 +41,7 @@ class QueryForm extends Component {
           type="text"
           aria-label="Query"
           spellCheck={false}
-          value={query}
+          value={query || ''}
           onChange={this.handleChange}
         />
         {query !== router.query.query ? <button>Apply</button> : null}
