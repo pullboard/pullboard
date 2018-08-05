@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/colebemis/pullboard.git"
+    "url": "git+https://github.com/pullboard/pullboard.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/colebemis/pullboard/issues"
+    "url": "https://github.com/pullboard/pullboard/issues"
   },
-  "homepage": "https://github.com/colebemis/pullboard#readme",
+  "homepage": "https://github.com/pullboard/pullboard#readme",
   "dependencies": {
     "next": "^6.1.1",
     "prop-types": "^15.6.2",
