@@ -12,3 +12,9 @@ script:
   - npm run lint
   - npm run test
   - npm run build
+deploy:
+  - provider: script
+    script: npx now --token $NOW_TOKEN && npx now alias --token $NOW_TOKEN
+    skip_cleanup: true
+    on:
+      master: true
