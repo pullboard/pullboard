@@ -10,8 +10,10 @@ install:
   - npm ci
 script:
   - npm run lint
-  - npm run test
+  - npm run test -- --coverage
   - npm run build
+after_success:
+  - npx codecov
 deploy:
   - provider: script
     script: npx now --public --token $NOW_TOKEN && npx now alias --token $NOW_TOKEN
