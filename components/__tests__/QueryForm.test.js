@@ -73,3 +73,20 @@ it('renders apply button if input value changed', () => {
 
   expect(queryByText('Apply')).toBeInTheDocument()
 })
+
+it('updates input value when query prop changes', () => {
+  const router = {
+    push: jest.fn(),
+    query: { query: 'foo' },
+  }
+
+  const { getByLabelText, rerender } = render(<QueryForm router={router} />)
+
+  const inputValue = getByLabelText('Query').value
+  expect(inputValue).toBe('foo')
+
+  rerender(<QueryForm router={{ ...router, query: { query: 'bar' } }} />)
+
+  const newInputValue = getByLabelText('Query').value
+  expect(newInputValue).toBe('bar')
+})

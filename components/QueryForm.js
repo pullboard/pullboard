@@ -17,6 +17,12 @@ export class QueryForm extends Component {
     query: this.props.router.query.query,
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.router.query.query !== prevProps.router.query.query) {
+      this.setState({ query: this.props.router.query.query })
+    }
+  }
+
   handleChange = event => {
     this.setState({ query: event.target.value })
   }
