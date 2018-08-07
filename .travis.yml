@@ -10,7 +10,7 @@ install:
   - npm ci
 script:
   - npm run lint
-  - npm run test -- --coverage
+  - npm run test:coverage
   - npm run build
 after_success:
   - npx codecov
