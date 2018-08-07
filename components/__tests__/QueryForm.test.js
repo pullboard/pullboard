@@ -6,8 +6,8 @@ afterEach(cleanup)
 
 it('updates route on submit', () => {
   const router = {
-    push: jest.fn(),
     query: {},
+    push: jest.fn(),
   }
 
   const { getByLabelText, container } = render(<QueryForm router={router} />)
@@ -25,8 +25,8 @@ it('updates route on submit', () => {
 
 it('does not update route on input value change', () => {
   const router = {
-    push: jest.fn(),
     query: {},
+    push: jest.fn(),
   }
 
   const { getByLabelText } = render(<QueryForm router={router} />)
@@ -42,8 +42,8 @@ it('does not update route on input value change', () => {
 
 it('does not update route if submitted input value did not change', () => {
   const router = {
-    push: jest.fn(),
     query: {},
+    push: jest.fn(),
   }
 
   const { container } = render(<QueryForm router={router} />)
@@ -57,8 +57,8 @@ it('does not update route if submitted input value did not change', () => {
 
 it('renders apply button if input value changed', () => {
   const router = {
-    push: jest.fn(),
     query: {},
+    push: jest.fn(),
   }
 
   const { queryByText, getByLabelText } = render(<QueryForm router={router} />)
@@ -76,8 +76,8 @@ it('renders apply button if input value changed', () => {
 
 it('updates input value when query prop changes', () => {
   const router = {
-    push: jest.fn(),
     query: { query: 'foo' },
+    push: jest.fn(),
   }
 
   const { getByLabelText, rerender } = render(<QueryForm router={router} />)
