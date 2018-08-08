@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`redirect redirects server-side 1`] = `
+Array [
+  Array [
+    302,
+    Object {
+      "Location": "/foo",
+    },
+  ],
+]
+`;

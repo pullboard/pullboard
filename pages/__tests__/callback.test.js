@@ -32,6 +32,6 @@ describe('getInitialProps', () => {
   it('redirects to /login if `res` is undefined', async () => {
     await CallbackPage.getInitialProps({})
 
-    expect(Router.push).toHaveBeenCalledWith('/login')
+    expect(Router.replace).toHaveBeenCalledWith('/login')
   })
 })

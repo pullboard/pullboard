@@ -24,6 +24,7 @@ export const withRouter = jest.fn(Component => {
 
 const Router = {
   push: jest.fn(),
+  replace: jest.fn(),
 }
 
 export default Router

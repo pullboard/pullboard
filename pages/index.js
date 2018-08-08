@@ -1,7 +1,7 @@
-import Router from 'next/router'
 import React, { Component } from 'react'
 import QueryForm from '../components/QueryForm'
 import { logOut } from '../lib/auth'
+import { redirect } from '../lib/utils'
 
 class IndexPage extends Component {
   render() {
@@ -12,7 +12,7 @@ class IndexPage extends Component {
         <button
           onClick={() => {
             logOut()
-            Router.push('/login')
+            redirect('/login')
           }}
         >
           Log out
