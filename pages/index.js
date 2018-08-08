@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import QueryForm from '../components/QueryForm'
-import { logOut } from '../lib/auth'
+import { isLoggedIn, logOut } from '../lib/auth'
 import { redirect } from '../lib/utils'
 
 class IndexPage extends Component {
+  static getInitialProps({ req, res }) {
+    if (!isLoggedIn(req)) {
+      redirect('/login', res)
+    }
+
+    return {}
+  }
+
   render() {
     return (
       <div>
