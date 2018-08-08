@@ -4,16 +4,15 @@ import { redirect } from '../lib/utils'
 
 class CallbackPage extends Component {
   static async getInitialProps({ res, query }) {
-    // Redirect to /login if getInitialProps is not executing server-side
-    if (!res) {
-      redirect('/login')
+    // If getInitialProps is executing client-side or `query.code` is falsy,
+    // redirect to /login
+    if (!res || !query.code) {
+      redirect('/login', res)
       return {}
     }
 
-    await logIn({ githubCode: query.code, res })
-
+    await logIn(query.code, res)
     redirect('/', res)
-
     return {}
   }
 
