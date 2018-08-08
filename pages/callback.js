@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import Router from 'next/router'
-import { getGithubToken } from '../lib/github'
+import { logIn } from '../lib/auth'
 
 class CallbackPage extends Component {
   static async getInitialProps({ res, query }) {
@@ -10,11 +10,9 @@ class CallbackPage extends Component {
       return {}
     }
 
-    const githubCode = query.code
-    const githubToken = await getGithubToken(githubCode)
+    await logIn({ githubCode: query.code, res })
 
-    res.setHeader('Set-Cookie', `githubToken=${githubToken}; SameSite=Strict`)
-
+    // Redirect to / after logging in
     res.writeHead(302, { Location: '/' })
     res.end()
 

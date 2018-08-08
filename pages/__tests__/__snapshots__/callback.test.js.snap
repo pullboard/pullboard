@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getInitialProps sets a \`githubToken\` cookie and redirects to / 1`] = `
+exports[`getInitialProps sets cookies and redirects to / 1`] = `
 Array [
   Array [
     "Set-Cookie",
-    "githubToken=TEST_GITHUB_TOKEN; SameSite=Strict",
+    "github_token=TEST_GITHUB_TOKEN; SameSite=Strict",
   ],
 ]
 `;
 
-exports[`getInitialProps sets a \`githubToken\` cookie and redirects to / 2`] = `
+exports[`getInitialProps sets cookies and redirects to / 2`] = `
 Array [
   Array [
     302,

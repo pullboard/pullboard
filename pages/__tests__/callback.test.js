@@ -11,7 +11,7 @@ it('renders without crashing', () => {
 })
 
 describe('getInitialProps', () => {
-  it('sets a `githubToken` cookie and redirects to /', async () => {
+  it('sets cookies and redirects to /', async () => {
     const context = {
       res: {
         setHeader: jest.fn(),
