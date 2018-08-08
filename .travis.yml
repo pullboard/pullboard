@@ -16,7 +16,7 @@ after_success:
   - npx codecov
 deploy:
   - provider: script
-    script: npx now --public --token $NOW_TOKEN && npx now alias --token $NOW_TOKEN
+    script: npx now -e GITHUB_CLIENT_SECRET --token $NOW_TOKEN && npx now alias --token $NOW_TOKEN
     skip_cleanup: true
     on:
       master: true
