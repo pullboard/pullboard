@@ -10,16 +10,7 @@ export class QueryForm extends Component {
         query: string,
       }).isRequired,
       push: func.isRequired,
-    }),
-  }
-
-  // A default `router` object is provided so QueryForm can be rendered outside
-  // of a routing context, for testing purposes only
-  static defaultProps = {
-    router: {
-      query: {},
-      push: () => {},
-    },
+    }).isRequired,
   }
 
   state = {

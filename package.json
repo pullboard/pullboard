@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/pullboard/pullboard#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "next": "^6.1.1",
     "prop-types": "^15.6.2",
     "query-string": "^6.1.0",
