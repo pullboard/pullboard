@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getGithubAuthUrl returns correct URL 1`] = `"https://github.com/login/oauth/authorize?client_id=TEST_GITHUB_CLIENT_ID&redirect_uri=TEST_REDIRECT_URI%3Ffrom%3D%252F"`;
-
-exports[`getGithubAuthUrl returns correct URL with \`from\` argument 1`] = `"https://github.com/login/oauth/authorize?client_id=TEST_GITHUB_CLIENT_ID&redirect_uri=TEST_REDIRECT_URI%3Ffrom%3D%252F%253Fquery%253Dtest"`;
+exports[`getGithubAuthUrl returns correct URL 1`] = `"https://github.com/login/oauth/authorize?client_id=TEST_GITHUB_CLIENT_ID&redirect_uri=TEST_REDIRECT_URI"`;

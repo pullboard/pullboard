@@ -14,7 +14,7 @@ describe('getInitialProps', () => {
   it('sets cookies and redirects to /', async () => {
     const context = {
       res: {
-        setHeader: jest.fn(),
+        cookie: jest.fn(),
         writeHead: jest.fn(),
         end: jest.fn(),
       },
@@ -25,25 +25,7 @@ describe('getInitialProps', () => {
 
     await CallbackPage.getInitialProps(context)
 
-    expect(context.res.setHeader.mock.calls).toMatchSnapshot()
-    expect(context.res.writeHead.mock.calls).toMatchSnapshot()
-  })
-
-  it('redirects to `query.from` if defined', async () => {
-    const context = {
-      res: {
-        setHeader: jest.fn(),
-        writeHead: jest.fn(),
-        end: jest.fn(),
-      },
-      query: {
-        code: 'TEST_CODE',
-        from: '/?query=test',
-      },
-    }
-
-    await CallbackPage.getInitialProps(context)
-
+    expect(context.res.cookie.mock.calls).toMatchSnapshot()
     expect(context.res.writeHead.mock.calls).toMatchSnapshot()
   })
 

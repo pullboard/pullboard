@@ -3,8 +3,8 @@
 exports[`logIn sets appropriate cookies 1`] = `
 Array [
   Array [
-    "Set-Cookie",
-    "github_token=TEST_GITHUB_TOKEN; SameSite=Strict",
+    "github_token",
+    "TEST_GITHUB_TOKEN",
   ],
 ]
 `;
