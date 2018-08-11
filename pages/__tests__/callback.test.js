@@ -1,7 +1,7 @@
-import React from 'react'
-import CallbackPage from '../callback'
-import { render, cleanup } from 'react-testing-library'
 import Router from 'next/router'
+import React from 'react'
+import { cleanup, render } from 'react-testing-library'
+import CallbackPage from '../callback'
 
 jest.mock('../../lib/github')
 
