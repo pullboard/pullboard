@@ -1,13 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`getInitialProps redirects to \`query.from\` if defined 1`] = `
+Array [
+  Array [
+    302,
+    Object {
+      "Location": "/?query=test",
+    },
+  ],
+]
+`;
+
 exports[`getInitialProps sets cookies and redirects to / 1`] = `
 Array [
   Array [
     "github_token",
     "TEST_GITHUB_TOKEN",
-    Object {
-      "sameSite": true,
-    },
   ],
 ]
 `;

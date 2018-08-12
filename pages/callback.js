@@ -12,7 +12,7 @@ class CallbackPage extends Component {
     }
 
     await logIn(query.code, res)
-    redirect('/', res)
+    redirect(query.from || '/', res)
     return {}
   }
 

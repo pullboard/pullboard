@@ -5,9 +5,6 @@ Array [
   Array [
     "github_token",
     "TEST_GITHUB_TOKEN",
-    Object {
-      "sameSite": true,
-    },
   ],
 ]
 `;

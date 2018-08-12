@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router'
-import { shape, func } from 'prop-types'
+import { func, shape, string } from 'prop-types'
 import React, { Component } from 'react'
 import { loggedIn } from '../lib/auth'
 import { getGithubAuthUrl } from '../lib/github'
@@ -9,22 +9,29 @@ class LoginPage extends Component {
   static propTypes = {
     router: shape({
       push: func.isRequired,
+      query: shape({
+        from: string,
+      }).isRequired,
     }).isRequired,
   }
 
-  static getInitialProps({ req, res }) {
+  static getInitialProps({ req, res, query }) {
     if (loggedIn(req)) {
-      redirect('/', res)
+      redirect(query.from || '/', res)
     }
 
     return {}
   }
 
   render() {
+    const { router } = this.props
+
     return (
       <div>
         <h1>Welcome to PullBoard</h1>
-        <button onClick={() => this.props.router.push(getGithubAuthUrl())}>
+        <button
+          onClick={() => router.push(getGithubAuthUrl(router.query.from))}
+        >
           Continue with GitHub
         </button>
       </div>
