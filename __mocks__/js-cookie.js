@@ -4,7 +4,11 @@ class Cookies {
   }
 
   get(key) {
-    return this.cookies[key] || null
+    if (key) {
+      return this.cookies[key] || null
+    }
+
+    return this.cookies
   }
 
   set(key, value) {
