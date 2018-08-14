@@ -34,8 +34,6 @@ class Column extends Component {
         bg="white"
         borderRadius={1}
         boxShadow={1}
-        borderTop="2px solid"
-        borderColor={column.color[5]}
       >
         <Box
           p={4}
