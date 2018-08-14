@@ -9,7 +9,7 @@ export const ButtonOutline = system(
     bg: 'transparent',
   },
   props => ({
-    boxShadow: `inset 0 0 0 2px ${themeGet('colors.gray.3')(props)}`,
+    boxShadow: `inset 0 0 0 1px ${themeGet('colors.gray.4')(props)}`,
   }),
 )
 
