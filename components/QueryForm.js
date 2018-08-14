@@ -52,6 +52,7 @@ export class QueryForm extends Component {
             aria-label="Query"
             spellCheck={false}
             value={query || ''}
+            placeholder="Try &quot;author:username&quot;"
             onChange={this.handleChange}
             color="gray.9"
           />

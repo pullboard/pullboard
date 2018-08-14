@@ -9,10 +9,9 @@ const Input = system(
     p: 3,
     m: 0,
     width: 1,
-    boxShadow: 1,
     borderRadius: 1,
     color: 'inherit',
-    bg: 'white',
+    bg: 'gray.2',
   },
   {
     fontFamily: 'inherit',
