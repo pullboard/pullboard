@@ -3,7 +3,7 @@ import theme from './theme'
 const columns = [
   {
     name: 'Needs review',
-    githubQuery: 'review:none',
+    githubQuery: 'review:none -status:failure',
     color: theme.colors.violet,
   },
   {
@@ -18,7 +18,7 @@ const columns = [
   },
   {
     name: 'Ready',
-    githubQuery: 'review:approved status:success status:pending',
+    githubQuery: 'review:approved -status:failure',
     color: theme.colors.teal,
   },
 ]

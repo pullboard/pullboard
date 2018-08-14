@@ -3,6 +3,7 @@ import React from 'react'
 import { formatTimeDifference } from '../lib/utils'
 import Flex from './Flex'
 import Link from './Link'
+import StatusIcon from './StatusIcon'
 import Text from './Text'
 import { Truncate } from './Truncate'
 
@@ -30,7 +31,7 @@ function PullRequest({ pullRequest, ...props }) {
         <Link href={pullRequest.url}>{pullRequest.title}</Link>
       </Truncate>
       <Truncate fontSize={1} color="gray.7" lineHeight="normal">
-        #{pullRequest.number} by{' '}
+        <StatusIcon pullRequest={pullRequest} mr={1} />#{pullRequest.number} by{' '}
         <Link href={pullRequest.author.url}>{pullRequest.author.login}</Link>
         <Text mx={1} color="gray.5">
           ·
