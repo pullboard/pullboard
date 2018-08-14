@@ -3,20 +3,16 @@ import { withRouter } from 'next/router'
 import { arrayOf, shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import columns from '../columns'
 import Box from '../components/Box'
 import Column from '../components/Column'
 import Flex from '../components/Flex'
+import Heading from '../components/Heading'
 import HorizontalScroll from '../components/HorizontalScroll'
 import QueryForm from '../components/QueryForm'
 import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
-
-const Title = styled.h1`
-  color: ${props => props.theme.main};
-`
 
 class IndexPage extends Component {
   static propTypes = {
@@ -61,10 +57,16 @@ class IndexPage extends Component {
     return (
       <Flex flexDirection="column" height="100vh">
         <Head>
-          <title>{`${router.query.query} | PullBoard` || 'PullBoard'}</title>
+          <title>
+            {router.query.query
+              ? `${router.query.query} | PullBoard`
+              : 'PullBoard'}
+          </title>
         </Head>
-        <Flex alignItems="center" flex="0 0 auto" px={4}>
-          <Title>PullBoard</Title>
+        <Flex alignItems="center" flex="0 0 auto" pt={4} px={4}>
+          <Heading is="h1" fontSize={4}>
+            PullBoard
+          </Heading>
           <Box flex="1 1 auto">
             <QueryForm />
           </Box>
