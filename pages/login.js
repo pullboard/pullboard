@@ -35,6 +35,7 @@ class LoginPage extends Component {
         alignItems="center"
         justifyContent="center"
         height="100vh"
+        bg="white"
       >
         <Heading is="h1" fontSize={5} mb={5}>
           Welcome to PullBoard
@@ -45,7 +46,7 @@ class LoginPage extends Component {
           py={3}
           onClick={() => router.push(getGithubAuthUrl(router.query.from))}
         >
-          Continue with GitHub
+          Log in with GitHub
         </Button>
       </Flex>
     )
