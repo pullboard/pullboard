@@ -1,6 +1,9 @@
+import Head from 'next/head'
+import { withRouter } from 'next/router'
 import { arrayOf, shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import columns from '../columns'
 import Column from '../components/Column'
 import QueryForm from '../components/QueryForm'
@@ -8,13 +11,22 @@ import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
 
+const Title = styled.h1`
+  color: ${props => props.theme.main};
+`
+
 class IndexPage extends Component {
   static propTypes = {
+    router: shape({
+      query: shape({
+        from: string,
+      }).isRequired,
+    }).isRequired,
     columns: arrayOf(
       shape({
         githubQuery: string.isRequired,
       }),
-    ),
+    ).isRequired,
   }
 
   static async getInitialProps({ req, res, asPath, query }) {
@@ -41,11 +53,14 @@ class IndexPage extends Component {
   }
 
   render() {
-    const { columns } = this.props
+    const { router, columns } = this.props
 
     return (
       <div>
-        <h1>PullBoard</h1>
+        <Head>
+          <title>{router.query.query || 'PullBoard'}</title>
+        </Head>
+        <Title>PullBoard</Title>
         <QueryForm />
         <button
           onClick={() => {
@@ -65,4 +80,4 @@ class IndexPage extends Component {
   }
 }
 
-export default IndexPage
+export default withRouter(IndexPage)
