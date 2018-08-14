@@ -25,8 +25,22 @@ class Column extends Component {
   render() {
     const { column } = this.props
     return (
-      <Flex flexDirection="column" width={380} mx={2} bg="papayawhip">
-        <Box flex="0 0 auto">
+      <Flex
+        flexDirection="column"
+        width={380}
+        mx={2}
+        bg="white"
+        borderRadius={1}
+        boxShadow={1}
+        borderTop="3px solid"
+        borderColor={column.color}
+      >
+        <Box
+          px={4}
+          flex="0 0 auto"
+          borderBottom="1px solid"
+          borderColor="gray.2"
+        >
           <h2>
             {column.name} ({column.data.issueCount})
           </h2>

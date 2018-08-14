@@ -63,7 +63,7 @@ class IndexPage extends Component {
         <Head>
           <title>{`${router.query.query} | PullBoard` || 'PullBoard'}</title>
         </Head>
-        <Flex alignItems="center" flex="0 0 auto">
+        <Flex alignItems="center" flex="0 0 auto" px={4}>
           <Title>PullBoard</Title>
           <Box flex="1 1 auto">
             <QueryForm />
@@ -78,7 +78,7 @@ class IndexPage extends Component {
           </button>
         </Flex>
         <HorizontalScroll flex="1 1 auto">
-          <Flex px={2} pb={4}>
+          <Flex px={2} py={4}>
             {columns.map(column => (
               <Column key={column.githubQuery} column={column} />
             ))}

@@ -1,4 +1,8 @@
+import openColor from 'open-color'
+
 const space = [0, 4, 8, 12, 16, 24, 32, 64, 128, 256, 512]
+
+const colors = openColor
 
 const fonts = {
   sans: [
@@ -17,4 +21,11 @@ const fonts = {
   ].join(', '),
 }
 
-export default { space, fonts }
+const radii = [0, 6]
+
+const shadows = [
+  'none',
+  '0 1px 2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.15)',
+]
+
+export default { space, colors, fonts, radii, shadows }

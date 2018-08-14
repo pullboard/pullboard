@@ -8,6 +8,7 @@ injectGlobal({
     boxSizing: 'border-box',
     margin: 0,
     fontFamily: theme.fonts.sans,
+    backgroundColor: theme.colors.gray[0],
     cursor: 'default',
   },
 

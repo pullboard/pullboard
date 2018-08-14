@@ -1,6 +1,16 @@
 import system from 'system-components'
 
-const Box = system('space', 'width', 'height', 'color', 'flex')
+const Box = system(
+  'space',
+  'width',
+  'height',
+  'color',
+  'flex',
+  'borderRadius',
+  'boxShadow',
+  'borders',
+  'borderColor',
+)
 
 Box.displayName = 'Box'
 
