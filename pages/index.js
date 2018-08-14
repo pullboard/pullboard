@@ -37,7 +37,7 @@ class IndexPage extends Component {
 
     const columnsWithData = await Promise.all(
       columns.map(async column => {
-        const githubQuery = join(column.githubQuery, query.query)
+        const githubQuery = join(column.githubQuery, query.query, 'state:open')
         const { data } = await searchPullRequests({ githubQuery, githubToken })
 
         if (data.errors) {
