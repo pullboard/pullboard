@@ -5,6 +5,7 @@ import { stringify } from 'querystring'
 import React, { Component } from 'react'
 import columns from '../columns'
 import Box from '../components/Box'
+import ButtonOutline from '../components/ButtonOutline'
 import Column from '../components/Column'
 import Flex from '../components/Flex'
 import Heading from '../components/Heading'
@@ -64,20 +65,21 @@ class IndexPage extends Component {
           </title>
         </Head>
         <Flex alignItems="center" flex="0 0 auto" pt={4} px={4}>
-          <Heading is="h1" fontSize={4} mr={4}>
+          <Heading is="h1" fontSize={4}>
             PullBoard
           </Heading>
-          <Box flex="1 1 auto">
+          <Box flex="1 1 auto" mx={4}>
             <QueryForm />
           </Box>
-          <button
+          <ButtonOutline
+            alignSelf="stretch"
             onClick={() => {
               logOut()
               redirect('/login')
             }}
           >
             Log out
-          </button>
+          </ButtonOutline>
         </Flex>
         <HorizontalScroll flex="1 1 auto">
           <Flex px={2} py={4}>

@@ -2,6 +2,7 @@ import { withRouter } from 'next/router'
 import { func, shape, string } from 'prop-types'
 import { stringify } from 'query-string'
 import React, { Component } from 'react'
+import Button from './Button'
 import Flex from './Flex'
 import Input from './Input'
 
@@ -44,6 +45,8 @@ export class QueryForm extends Component {
     const { router } = this.props
     const { query } = this.state
 
+    const hasChanged = query !== router.query.query
+
     return (
       <form onSubmit={this.handleSubmit}>
         <Flex>
@@ -55,8 +58,19 @@ export class QueryForm extends Component {
             placeholder="Try &quot;author:username&quot;"
             onChange={this.handleChange}
             color="gray.9"
+            style={
+              hasChanged
+                ? { borderTopRightRadius: 0, borderBottomRightRadius: 0 }
+                : null
+            }
           />
-          {query !== router.query.query ? <button>Apply</button> : null}
+          {hasChanged ? (
+            <Button
+              style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+            >
+              Apply
+            </Button>
+          ) : null}
         </Flex>
       </form>
     )
