@@ -26,13 +26,16 @@ function PullRequest({ pullRequest, ...props }) {
           {pullRequest.repository.name}
         </Link>
       </Truncate>
-      <Truncate color="gray.9" fontWeight="bold" lineHeight="normal">
+      <Truncate color="gray.9" fontWeight="medium" lineHeight="normal">
         <Link href={pullRequest.url}>{pullRequest.title}</Link>
       </Truncate>
       <Truncate fontSize={1} color="gray.7" lineHeight="normal">
         #{pullRequest.number} by{' '}
-        <Link href={pullRequest.author.url}>{pullRequest.author.login}</Link>{' '}
-        <Text color="gray.5">·</Text> {timeDifference}
+        <Link href={pullRequest.author.url}>{pullRequest.author.login}</Link>
+        <Text mx={1} color="gray.5">
+          ·
+        </Text>
+        {timeDifference}
       </Truncate>
     </Flex>
   )

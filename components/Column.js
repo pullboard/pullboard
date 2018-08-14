@@ -4,6 +4,8 @@ import Box from './Box'
 import Flex from './Flex'
 import PullRequest from './PullRequest'
 import VerticalScroll from './VerticalScroll'
+import Heading from './Heading'
+import Badge from './Badge'
 
 class Column extends Component {
   static propTypes = {
@@ -33,17 +35,20 @@ class Column extends Component {
         borderRadius={1}
         boxShadow={1}
         borderTop="3px solid"
-        borderColor={column.color}
+        borderColor={column.color[5]}
       >
         <Box
-          px={4}
+          p={4}
           flex="0 0 auto"
           borderBottom="1px solid"
           borderColor="gray.2"
         >
-          <h2>
-            {column.name} ({column.data.issueCount})
-          </h2>
+          <Heading is="h2" fontSize={2} color={column.color[9]}>
+            {column.name}
+            <Badge ml={2} color={column.color[9]} bg={column.color[0]}>
+              {column.data.issueCount.toLocaleString()}
+            </Badge>
+          </Heading>
         </Box>
         <VerticalScroll flexDirection="column" flex="1 1 auto">
           <Box>
