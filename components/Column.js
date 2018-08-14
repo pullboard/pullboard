@@ -1,11 +1,11 @@
 import { arrayOf, number, shape, string } from 'prop-types'
 import React, { Component } from 'react'
+import Badge from './Badge'
 import Box from './Box'
 import Flex from './Flex'
+import Heading from './Heading'
 import PullRequest from './PullRequest'
 import VerticalScroll from './VerticalScroll'
-import Heading from './Heading'
-import Badge from './Badge'
 
 class Column extends Component {
   static propTypes = {
