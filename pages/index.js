@@ -5,7 +5,10 @@ import { stringify } from 'querystring'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import columns from '../columns'
+import Box from '../components/Box'
 import Column from '../components/Column'
+import Flex from '../components/Flex'
+import HorizontalScroll from '../components/HorizontalScroll'
 import QueryForm from '../components/QueryForm'
 import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
@@ -38,7 +41,7 @@ class IndexPage extends Component {
 
     const columnsWithData = await Promise.all(
       columns.map(async column => {
-        const githubQuery = join(query.query, column.githubQuery)
+        const githubQuery = join(column.githubQuery, query.query)
         const { data } = await searchPullRequests({ githubQuery, githubToken })
 
         if (data.errors) {
@@ -56,26 +59,32 @@ class IndexPage extends Component {
     const { router, columns } = this.props
 
     return (
-      <div>
+      <Flex flexDirection="column" height="100vh">
         <Head>
-          <title>{router.query.query || 'PullBoard'}</title>
+          <title>{`${router.query.query} | PullBoard` || 'PullBoard'}</title>
         </Head>
-        <Title>PullBoard</Title>
-        <QueryForm />
-        <button
-          onClick={() => {
-            logOut()
-            redirect('/login')
-          }}
-        >
-          Log out
-        </button>
-        <div>
-          {columns.map(column => (
-            <Column key={column.githubQuery} column={column} />
-          ))}
-        </div>
-      </div>
+        <Flex alignItems="center" flex="0 0 auto">
+          <Title>PullBoard</Title>
+          <Box flex="1 1 auto">
+            <QueryForm />
+          </Box>
+          <button
+            onClick={() => {
+              logOut()
+              redirect('/login')
+            }}
+          >
+            Log out
+          </button>
+        </Flex>
+        <HorizontalScroll flex="1 1 auto">
+          <Flex px={2} pb={4}>
+            {columns.map(column => (
+              <Column key={column.githubQuery} column={column} />
+            ))}
+          </Flex>
+        </HorizontalScroll>
+      </Flex>
     )
   }
 }

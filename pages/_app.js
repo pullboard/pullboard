@@ -1,6 +1,20 @@
 import App, { Container } from 'next/app'
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, injectGlobal } from 'styled-components'
+import theme from '../theme'
+
+injectGlobal({
+  body: {
+    boxSizing: 'border-box',
+    margin: 0,
+    fontFamily: theme.fonts.sans,
+    cursor: 'default',
+  },
+
+  '*, *:before, *:after': {
+    boxSizing: 'inherit',
+  },
+})
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -17,7 +31,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <Container>
-        <ThemeProvider theme={{ main: 'blue' }}>
+        <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>
       </Container>

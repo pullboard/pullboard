@@ -1,26 +1,25 @@
 import { number, shape, string } from 'prop-types'
 import React from 'react'
 import { formatTimeDifference } from '../lib/utils'
+import Flex from './Flex'
 
-function PullRequest({ pullRequest }) {
+function PullRequest({ pullRequest, ...props }) {
   const timeDifference = formatTimeDifference(new Date(pullRequest.createdAt))
   return (
-    <div>
+    <Flex flexDirection="column" justifyContent="center" px={4} {...props}>
       <span>
         <a href={pullRequest.repository.owner.url}>
           {pullRequest.repository.owner.login}
         </a>{' '}
         / <a href={pullRequest.repository.url}>{pullRequest.repository.name}</a>
       </span>
-      <br />
       <a href={pullRequest.url}>{pullRequest.title}</a>
-      <br />
       <span>
         #{pullRequest.number} by{' '}
         <a href={pullRequest.author.url}>{pullRequest.author.login}</a> ·{' '}
         {timeDifference}
       </span>
-    </div>
+    </Flex>
   )
 }
 

@@ -1,6 +1,9 @@
 import { arrayOf, number, shape, string } from 'prop-types'
 import React, { Component } from 'react'
+import Box from './Box'
+import Flex from './Flex'
 import PullRequest from './PullRequest'
+import VerticalScroll from './VerticalScroll'
 
 class Column extends Component {
   static propTypes = {
@@ -22,16 +25,24 @@ class Column extends Component {
   render() {
     const { column } = this.props
     return (
-      <div>
-        <h2>
-          {column.name} ({column.data.issueCount})
-        </h2>
-        <div>
-          {column.data.edges.map(({ pullRequest }) => (
-            <PullRequest key={pullRequest.id} pullRequest={pullRequest} />
-          ))}
-        </div>
-      </div>
+      <Flex flexDirection="column" width={380} mx={2} bg="papayawhip">
+        <Box flex="0 0 auto">
+          <h2>
+            {column.name} ({column.data.issueCount})
+          </h2>
+        </Box>
+        <VerticalScroll flexDirection="column" flex="1 1 auto">
+          <Box>
+            {column.data.edges.map(({ pullRequest }) => (
+              <PullRequest
+                key={pullRequest.id}
+                pullRequest={pullRequest}
+                style={{ height: 100 }}
+              />
+            ))}
+          </Box>
+        </VerticalScroll>
+      </Flex>
     )
   }
 }
