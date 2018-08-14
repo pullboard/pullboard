@@ -64,7 +64,7 @@ class IndexPage extends Component {
           </title>
         </Head>
         <Flex alignItems="center" flex="0 0 auto" pt={4} px={4}>
-          <Heading is="h1" fontSize={4}>
+          <Heading is="h1" fontSize={4} mr={4}>
             PullBoard
           </Heading>
           <Box flex="1 1 auto">

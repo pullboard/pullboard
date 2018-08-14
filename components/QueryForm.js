@@ -2,6 +2,8 @@ import { withRouter } from 'next/router'
 import { func, shape, string } from 'prop-types'
 import { stringify } from 'query-string'
 import React, { Component } from 'react'
+import Flex from './Flex'
+import Input from './Input'
 
 export class QueryForm extends Component {
   static propTypes = {
@@ -44,14 +46,17 @@ export class QueryForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          aria-label="Query"
-          spellCheck={false}
-          value={query || ''}
-          onChange={this.handleChange}
-        />
-        {query !== router.query.query ? <button>Apply</button> : null}
+        <Flex>
+          <Input
+            type="text"
+            aria-label="Query"
+            spellCheck={false}
+            value={query || ''}
+            onChange={this.handleChange}
+            color="gray.9"
+          />
+          {query !== router.query.query ? <button>Apply</button> : null}
+        </Flex>
       </form>
     )
   }

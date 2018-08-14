@@ -34,7 +34,7 @@ class Column extends Component {
         bg="white"
         borderRadius={1}
         boxShadow={1}
-        borderTop="3px solid"
+        borderTop="2px solid"
         borderColor={column.color[5]}
       >
         <Box
@@ -43,9 +43,9 @@ class Column extends Component {
           borderBottom="1px solid"
           borderColor="gray.2"
         >
-          <Heading is="h2" fontSize={2} color={column.color[9]}>
+          <Heading is="h2" fontSize={2} color={column.color[8]}>
             {column.name}
-            <Badge ml={2} color={column.color[9]} bg={column.color[0]}>
+            <Badge ml={2} color={column.color[8]} bg={column.color[0]}>
               {column.data.issueCount.toLocaleString()}
             </Badge>
           </Heading>
