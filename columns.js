@@ -19,7 +19,7 @@ const columns = [
   {
     name: 'Ready',
     githubQuery: 'review:approved -status:failure',
-    color: theme.colors.teal,
+    color: theme.colors.green,
   },
 ]
 
