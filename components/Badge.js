@@ -2,7 +2,7 @@ import system from 'system-components'
 
 const Badge = system(
   {
-    fontSize: 0,
+    fontSize: 1,
     px: 2,
     py: 1,
     color: 'gray.7',
@@ -12,7 +12,7 @@ const Badge = system(
   },
   {
     display: 'inline-block',
-    verticalAlign: 'middle',
+    verticalAlign: 'baseline',
   },
 )
 
