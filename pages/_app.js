@@ -1,7 +1,7 @@
 import App, { Container } from 'next/app'
 import React from 'react'
 import { ThemeProvider, injectGlobal } from 'styled-components'
-import theme from '../theme'
+import theme from '../src/theme'
 
 injectGlobal({
   body: {

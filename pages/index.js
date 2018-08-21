@@ -3,7 +3,7 @@ import { withRouter } from 'next/router'
 import { arrayOf, shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
-import columns from '../columns'
+import columns from '../src/columns'
 import Box from '../components/Box'
 import ButtonOutline from '../components/ButtonOutline'
 import Column from '../components/Column'
@@ -14,6 +14,7 @@ import QueryForm from '../components/QueryForm'
 import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
+import Text from '../components/Text'
 
 class IndexPage extends Component {
   static propTypes = {
@@ -66,7 +67,10 @@ class IndexPage extends Component {
         </Head>
         <Flex alignItems="center" flex="0 0 auto" pt={4} px={4}>
           <Heading is="h1" fontSize={4}>
-            PullBoard
+            PullBoard{' '}
+            <Text color="gray.7" fontWeight="light">
+              Alpha
+            </Text>
           </Heading>
           <Box flex="1 1 auto" mx={4}>
             <QueryForm />
