@@ -1,4 +1,5 @@
 import system from 'system-components'
+import { themeGet } from 'styled-system'
 
 const Input = system(
   {
@@ -21,6 +22,12 @@ const Input = system(
     appearance: 'none',
     outline: 0,
   },
+  props => ({
+    '&:focus': {
+      backgroundColor: 'white',
+      boxShadow: `inset 0 0 0 1px ${themeGet('colors.gray.4')(props)}`,
+    },
+  }),
 )
 
 Input.displayName = 'Input'
