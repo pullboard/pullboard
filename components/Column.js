@@ -1,11 +1,15 @@
 import { arrayOf, number, shape, string } from 'prop-types'
 import React, { Component } from 'react'
+import { AutoSizer, InfiniteLoader, List } from 'react-virtualized'
+import { GITHUB_TOKEN_KEY } from '../lib/auth'
+import { searchPullRequests } from '../lib/github'
+import { cookies } from '../lib/utils'
 import Badge from './Badge'
 import Box from './Box'
 import Flex from './Flex'
 import Heading from './Heading'
 import PullRequest from './PullRequest'
-import VerticalScroll from './VerticalScroll'
+import PullRequestLoader from './PullRequestLoader'
 
 class Column extends Component {
   static propTypes = {
@@ -24,12 +28,56 @@ class Column extends Component {
     }),
   }
 
+  state = {
+    list: this.props.column.data.edges,
+  }
+
+  isRowLoaded = ({ index }) => {
+    return Boolean(this.state.list[index])
+  }
+
+  loadMoreRows = async ({ startIndex, stopIndex }) => {
+    const githubQuery = this.props.column.githubQuery
+    const endCursor = this.state.list[startIndex - 1].cursor
+    const batchSize = 1 + stopIndex - startIndex
+    const githubToken = cookies()[GITHUB_TOKEN_KEY]
+
+    const { data } = await searchPullRequests({
+      githubQuery,
+      endCursor,
+      batchSize,
+      githubToken,
+    })
+
+    if (data.errors) {
+      throw new Error(JSON.stringify(data.errors))
+    }
+
+    this.setState(state => ({
+      list: state.list.concat(data.data.search.edges),
+    }))
+  }
+
+  rowRenderer = ({ index, key, style }) => {
+    if (!this.state.list[index]) {
+      return <PullRequestLoader key={key} style={style} />
+    }
+
+    return (
+      <PullRequest
+        key={key}
+        style={style}
+        pullRequest={this.state.list[index].pullRequest}
+      />
+    )
+  }
+
   render() {
     const { column } = this.props
     return (
       <Flex
         flexDirection="column"
-        width={380}
+        width={[320, 380]}
         mx={2}
         bg="white"
         borderRadius={1}
@@ -48,17 +96,30 @@ class Column extends Component {
             </Badge>
           </Heading>
         </Box>
-        <VerticalScroll flexDirection="column" flex="1 1 auto">
-          <Box>
-            {column.data.edges.map(({ pullRequest }) => (
-              <PullRequest
-                key={pullRequest.id}
-                pullRequest={pullRequest}
-                style={{ height: 100 }}
-              />
-            ))}
-          </Box>
-        </VerticalScroll>
+        <Flex flexDirection="column" flex="1 1 auto">
+          <InfiniteLoader
+            isRowLoaded={this.isRowLoaded}
+            loadMoreRows={this.loadMoreRows}
+            rowCount={column.data.issueCount}
+          >
+            {({ onRowsRendered, registerChild }) => (
+              <AutoSizer>
+                {({ height, width }) => (
+                  <List
+                    style={{ outline: 0 }}
+                    onRowsRendered={onRowsRendered}
+                    ref={registerChild}
+                    width={width}
+                    height={height}
+                    rowCount={column.data.issueCount}
+                    rowHeight={100}
+                    rowRenderer={this.rowRenderer}
+                  />
+                )}
+              </AutoSizer>
+            )}
+          </InfiniteLoader>
+        </Flex>
       </Flex>
     )
   }
