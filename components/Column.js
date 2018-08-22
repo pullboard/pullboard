@@ -10,6 +10,7 @@ import Flex from './Flex'
 import Heading from './Heading'
 import PullRequest from './PullRequest'
 import PullRequestLoader from './PullRequestLoader'
+import Text from './Text'
 
 class Column extends Component {
   static propTypes = {
@@ -97,28 +98,34 @@ class Column extends Component {
           </Heading>
         </Box>
         <Flex flexDirection="column" flex="1 1 auto">
-          <InfiniteLoader
-            isRowLoaded={this.isRowLoaded}
-            loadMoreRows={this.loadMoreRows}
-            rowCount={column.data.issueCount}
-          >
-            {({ onRowsRendered, registerChild }) => (
-              <AutoSizer>
-                {({ height, width }) => (
-                  <List
-                    style={{ outline: 0 }}
-                    onRowsRendered={onRowsRendered}
-                    ref={registerChild}
-                    width={width}
-                    height={height}
-                    rowCount={column.data.issueCount}
-                    rowHeight={100}
-                    rowRenderer={this.rowRenderer}
-                  />
-                )}
-              </AutoSizer>
-            )}
-          </InfiniteLoader>
+          {column.data.issueCount === 0 ? (
+            <Text p={6} color="gray.6" textAlign="center" lineHeight="normal">
+              No results.
+            </Text>
+          ) : (
+            <InfiniteLoader
+              isRowLoaded={this.isRowLoaded}
+              loadMoreRows={this.loadMoreRows}
+              rowCount={column.data.issueCount}
+            >
+              {({ onRowsRendered, registerChild }) => (
+                <AutoSizer>
+                  {({ height, width }) => (
+                    <List
+                      style={{ outline: 0 }}
+                      onRowsRendered={onRowsRendered}
+                      ref={registerChild}
+                      width={width}
+                      height={height}
+                      rowCount={column.data.issueCount}
+                      rowHeight={100}
+                      rowRenderer={this.rowRenderer}
+                    />
+                  )}
+                </AutoSizer>
+              )}
+            </InfiniteLoader>
+          )}
         </Flex>
       </Flex>
     )
