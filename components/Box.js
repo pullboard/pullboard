@@ -6,6 +6,7 @@ const Box = system(
   'height',
   'color',
   'flex',
+  'order',
   'borderRadius',
   'boxShadow',
   'borders',

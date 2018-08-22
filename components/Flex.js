@@ -7,6 +7,7 @@ const Flex = system(
   'flexDirection',
   'alignItems',
   'justifyContent',
+  'flexWrap',
 )
 
 Flex.displayName = 'Flex'

@@ -65,14 +65,22 @@ class IndexPage extends Component {
               : 'PullBoard'}
           </title>
         </Head>
-        <Flex alignItems="center" flex="0 0 auto" pt={4} px={4}>
-          <Heading is="h1" fontSize={4}>
-            PullBoard{' '}
-            <Text color="gray.7" fontWeight="light">
-              Alpha
-            </Text>
-          </Heading>
-          <Box flex="1 1 auto" mx={4}>
+        <Flex alignItems="center" flexWrap="wrap" flex="0 0 auto" pt={4} px={4}>
+          <Box flex={['1 1 auto', '0 1 auto']}>
+            <Heading is="h1" fontSize={4}>
+              PullBoard{' '}
+              <Text color="gray.7" fontWeight="light">
+                Alpha
+              </Text>
+            </Heading>
+          </Box>
+          <Box
+            mx={[0, 4]}
+            mt={[4, 0]}
+            width={[1, 'auto']}
+            flex="1 1 auto"
+            order={[1, 0]}
+          >
             <QueryForm />
           </Box>
           <ButtonOutline
