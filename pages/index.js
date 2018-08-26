@@ -68,10 +68,7 @@ class IndexPage extends Component {
         <Flex alignItems="center" flexWrap="wrap" flex="0 0 auto" pt={4} px={4}>
           <Box flex={['1 1 auto', '0 1 auto']}>
             <Heading is="h1" fontSize={4}>
-              PullBoard{' '}
-              <Text color="gray.7" fontWeight="light">
-                Alpha
-              </Text>
+              PullBoard <Text fontWeight="light">Alpha</Text>
             </Heading>
           </Box>
           <Box

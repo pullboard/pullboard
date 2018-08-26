@@ -7,6 +7,7 @@ import { redirect } from '../lib/utils'
 import Button from '../components/Button'
 import Heading from '../components/Heading'
 import Flex from '../components/Flex'
+import Text from '../components/Text'
 
 class LoginPage extends Component {
   static propTypes = {
@@ -35,11 +36,31 @@ class LoginPage extends Component {
         alignItems="center"
         justifyContent="center"
         height="100vh"
-        bg="white"
+        maxWidth={600}
+        px={5}
+        mx="auto"
       >
-        <Heading is="h1" fontSize={5} mb={5}>
-          Welcome to PullBoard
+        <Heading is="h1" fontSize={5} mb={6} textAlign="center">
+          <Text
+            fontSize={1}
+            color="violet.8"
+            style={{ textTransform: 'uppercase', letterSpacing: '1px' }}
+          >
+            Welcome to
+          </Text>
+          <br />
+          PullBoard <Text fontWeight="light">Alpha</Text>
         </Heading>
+        <Text
+          color="gray.7"
+          fontSize={3}
+          textAlign="center"
+          lineHeight="normal"
+          mb={7}
+        >
+          A dashboard that helps teams, maintainers, and contributors
+          efficiently manage pull requests.
+        </Text>
         <Button
           fontSize={2}
           px={5}

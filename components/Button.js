@@ -9,7 +9,7 @@ export const Button = system(
     px: 4,
     py: 2,
     color: 'white',
-    bg: 'gray.8',
+    bg: 'gray.9',
     borderRadius: 1,
     border: 0,
   },
