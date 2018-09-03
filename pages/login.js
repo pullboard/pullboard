@@ -62,8 +62,8 @@ class LoginPage extends Component {
           lineHeight="normal"
           mb={7}
         >
-          A dashboard that helps teams, maintainers, and contributors
-          efficiently manage pull requests.
+          A flexible dashboard that helps teams, maintainers, and contributors
+          stay on top of open pull requests.
         </Text>
         <Button
           fontSize={2}
