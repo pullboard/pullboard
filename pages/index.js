@@ -3,18 +3,15 @@ import { withRouter } from 'next/router'
 import { arrayOf, shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
-import columns from '../src/columns'
-import Box from '../components/Box'
-import ButtonOutline from '../components/ButtonOutline'
 import Column from '../components/Column'
 import Flex from '../components/Flex'
-import Heading from '../components/Heading'
+import Header from '../components/Header'
 import HorizontalScroll from '../components/HorizontalScroll'
 import QueryForm from '../components/QueryForm'
-import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
+import { GITHUB_TOKEN_KEY, loggedIn } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
-import Text from '../components/Text'
+import columns from '../src/columns'
 
 class IndexPage extends Component {
   static propTypes = {
@@ -65,31 +62,9 @@ class IndexPage extends Component {
               : 'PullBoard'}
           </title>
         </Head>
-        <Flex alignItems="center" flexWrap="wrap" flex="0 0 auto" pt={4} px={4}>
-          <Box flex={['1 1 auto', '0 1 auto']}>
-            <Heading is="h1" fontSize={4}>
-              PullBoard <Text fontWeight="light">Alpha</Text>
-            </Heading>
-          </Box>
-          <Box
-            mx={[0, 4]}
-            mt={[4, 0]}
-            width={[1, 'auto']}
-            flex="1 1 auto"
-            order={[1, 0]}
-          >
-            <QueryForm />
-          </Box>
-          <ButtonOutline
-            alignSelf="stretch"
-            onClick={() => {
-              logOut()
-              redirect('/login')
-            }}
-          >
-            Log out
-          </ButtonOutline>
-        </Flex>
+        <Header>
+          <QueryForm />
+        </Header>
         <HorizontalScroll flex="1 1 auto">
           <Flex px={2} py={4}>
             {columns.map(column => (
