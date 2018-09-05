@@ -1,77 +1,58 @@
 import Head from 'next/head'
 import { withRouter } from 'next/router'
-import { arrayOf, shape, string } from 'prop-types'
+import { shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
-import Column from '../components/Column'
+import BoardLink from '../components/BoardLink'
 import Flex from '../components/Flex'
 import Header from '../components/Header'
-import HorizontalScroll from '../components/HorizontalScroll'
-import QueryForm from '../components/QueryForm'
 import { GITHUB_TOKEN_KEY, loggedIn } from '../lib/auth'
-import { searchPullRequests } from '../lib/github'
-import { cookies, join, redirect } from '../lib/utils'
-import columns from '../src/columns'
+import { getViewer } from '../lib/github'
+import { cookies, redirect } from '../lib/utils'
 
 class IndexPage extends Component {
   static propTypes = {
-    router: shape({
-      query: shape({
-        from: string,
-      }).isRequired,
+    viewer: shape({
+      login: string.isRequired,
     }).isRequired,
-    columns: arrayOf(
-      shape({
-        githubQuery: string.isRequired,
-      }),
-    ).isRequired,
   }
 
-  static async getInitialProps({ req, res, asPath, query }) {
+  static async getInitialProps({ req, res, asPath }) {
     if (!loggedIn(req)) {
       redirect(`/login?${stringify({ from: asPath })}`, res)
+      return {}
     }
 
     const githubToken = cookies(req)[GITHUB_TOKEN_KEY]
 
-    const columnsWithData = await Promise.all(
-      columns.map(async column => {
-        const githubQuery = join(column.githubQuery, query.query, 'state:open')
-        const { data } = await searchPullRequests({ githubQuery, githubToken })
+    const { data: viewerData } = await getViewer(githubToken)
 
-        if (data.errors) {
-          throw new Error(JSON.stringify(data.errors))
-        }
+    if (viewerData.errors) {
+      throw new Error(JSON.stringify(viewerData.errors))
+    }
 
-        return { ...column, githubQuery, data: data.data.search }
-      }),
-    )
-
-    return { columns: columnsWithData }
+    return { viewer: viewerData.data.viewer }
   }
 
   render() {
-    const { router, columns } = this.props
-
+    const { viewer } = this.props
     return (
-      <Flex flexDirection="column" height="100vh">
+      <Flex flexDirection="column" maxWidth={800} mx="auto">
         <Head>
-          <title>
-            {router.query.query
-              ? `${router.query.query} | PullBoard`
-              : 'PullBoard'}
-          </title>
+          <title>PullBoard</title>
         </Head>
-        <Header>
-          <QueryForm />
-        </Header>
-        <HorizontalScroll flex="1 1 auto">
-          <Flex px={2} py={4}>
-            {columns.map(column => (
-              <Column key={column.githubQuery} column={column} />
-            ))}
-          </Flex>
-        </HorizontalScroll>
+        <Header />
+        <Flex
+          mx={4}
+          my={[4, 6]}
+          flexDirection="column"
+          bg="white"
+          boxShadow={1}
+          borderRadius={1}
+        >
+          <BoardLink githubQuery={`author:${viewer.login}`} />
+          <BoardLink githubQuery={`user:${viewer.login}`} />
+        </Flex>
       </Flex>
     )
   }

@@ -37,7 +37,7 @@ export class QueryForm extends Component {
     const { query } = this.state
 
     if (query !== router.query.query) {
-      router.push(`/?${stringify({ ...router.query, query })}`)
+      router.push(`${router.pathname}?${stringify({ ...router.query, query })}`)
     }
   }
 
