@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { withRouter } from 'next/router'
 import { func, shape, string } from 'prop-types'
 import React, { Component } from 'react'
+import Box from '../components/Box'
 import Button from '../components/Button'
 import Flex from '../components/Flex'
 import Heading from '../components/Heading'
@@ -32,48 +33,51 @@ class LoginPage extends Component {
     const { router } = this.props
 
     return (
-      <Flex
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        height="100vh"
-        maxWidth={600}
-        px={5}
-        mx="auto"
-      >
-        <Head>
-          <title>PullBoard</title>
-        </Head>
-        <Heading is="h1" fontSize={5} mb={6} textAlign="center">
-          <Text
-            fontSize={1}
-            color="violet.8"
-            style={{ textTransform: 'uppercase', letterSpacing: '1px' }}
-          >
-            Welcome to
-          </Text>
-          <br />
-          PullBoard <Text fontWeight="light">Alpha</Text>
-        </Heading>
-        <Text
-          color="gray.7"
-          fontSize={3}
-          textAlign="center"
-          lineHeight="normal"
-          mb={7}
-        >
-          A flexible dashboard that helps teams, maintainers, and contributors
-          stay on top of open pull requests.
-        </Text>
-        <Button
-          fontSize={2}
+      <Box bg="white">
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          height="100vh"
+          maxWidth={600}
           px={5}
-          py={3}
-          onClick={() => router.push(getGithubAuthUrl(router.query.from))}
+          mx="auto"
         >
-          Log in with GitHub
-        </Button>
-      </Flex>
+          <Head>
+            <title>PullBoard</title>
+          </Head>
+          <Heading is="h1" fontSize={5} mb={6} textAlign="center">
+            <Text
+              fontSize={1}
+              color="violet.8"
+              style={{ textTransform: 'uppercase', letterSpacing: '1px' }}
+            >
+              Welcome to
+            </Text>
+            <br />
+            PullBoard <Text fontWeight="light">Alpha</Text>
+          </Heading>
+          <Text
+            color="gray.7"
+            fontSize={3}
+            textAlign="center"
+            lineHeight="normal"
+            mb={7}
+          >
+            A flexible dashboard that helps teams, maintainers, and contributors
+            stay on top of open pull requests.
+          </Text>
+          <Button
+            fontSize={2}
+            px={5}
+            py={4}
+            mb={7}
+            onClick={() => router.push(getGithubAuthUrl(router.query.from))}
+          >
+            Log in with GitHub
+          </Button>
+        </Flex>
+      </Box>
     )
   }
 }

@@ -3,7 +3,7 @@ import { withRouter } from 'next/router'
 import { shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
-import BoardLink from '../components/BoardLink'
+import BoardCard from '../components/BoardCard'
 import Flex from '../components/Flex'
 import Header from '../components/Header'
 import { GITHUB_TOKEN_KEY, loggedIn } from '../lib/auth'
@@ -25,33 +25,42 @@ class IndexPage extends Component {
 
     const githubToken = cookies(req)[GITHUB_TOKEN_KEY]
 
-    const { data: viewerData } = await getViewer(githubToken)
+    const { data } = await getViewer(githubToken)
 
-    if (viewerData.errors) {
-      throw new Error(JSON.stringify(viewerData.errors))
+    if (data.errors) {
+      throw new Error(JSON.stringify(data.errors))
     }
 
-    return { viewer: viewerData.data.viewer }
+    return { viewer: data.data.viewer }
   }
 
   render() {
     const { viewer } = this.props
     return (
-      <Flex flexDirection="column" maxWidth={800} mx="auto">
+      <Flex flexDirection="column" maxWidth={640} mx="auto">
         <Head>
           <title>PullBoard</title>
         </Head>
         <Header />
-        <Flex
-          mx={4}
-          my={[4, 6]}
-          flexDirection="column"
-          bg="white"
-          boxShadow={1}
-          borderRadius={1}
-        >
-          <BoardLink githubQuery={`author:${viewer.login}`} />
-          <BoardLink githubQuery={`user:${viewer.login}`} />
+        <Flex mx={2} my={[2, 6]} maxWidth={640} flexDirection="column">
+          <BoardCard
+            title="Your pull requests"
+            avatarUrl={viewer.avatarUrl}
+            githubQuery={`author:${viewer.login}`}
+          />
+          <BoardCard
+            title="Your repositories"
+            avatarUrl={viewer.avatarUrl}
+            githubQuery={`user:${viewer.login}`}
+          />
+          {viewer.organizations.nodes.map(org => (
+            <BoardCard
+              key={org.login}
+              title={org.name}
+              avatarUrl={org.avatarUrl}
+              githubQuery={`org:${org.login}`}
+            />
+          ))}
         </Flex>
       </Flex>
     )

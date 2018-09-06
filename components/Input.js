@@ -1,5 +1,5 @@
-import system from 'system-components'
 import { themeGet } from 'styled-system'
+import system from 'system-components'
 
 const Input = system(
   {
@@ -14,17 +14,21 @@ const Input = system(
     color: 'inherit',
     bg: 'gray.2',
   },
-  {
+  props => ({
     fontFamily: 'inherit',
     display: 'inline-block',
     verticalAlign: 'middle',
     border: 0,
     appearance: 'none',
     outline: 0,
-  },
-  props => ({
+    transition: 'all 150ms',
+
+    '&:hover': {
+      backgroundColor: themeGet('colors.gray.3')(props),
+    },
+
     '&:focus': {
-      backgroundColor: 'white',
+      backgroundColor: themeGet('colors.white')(props),
       boxShadow: `inset 0 0 0 1px ${themeGet('colors.gray.4')(props)}`,
     },
   }),
