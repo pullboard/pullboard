@@ -13,7 +13,7 @@ import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
 import columns from '../src/columns'
 
-class IndexPage extends Component {
+class BoardPage extends Component {
   static propTypes = {
     router: shape({
       query: shape({
@@ -77,4 +77,4 @@ class IndexPage extends Component {
   }
 }
 
-export default withRouter(IndexPage)
+export default withRouter(BoardPage)

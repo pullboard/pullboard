@@ -1,8 +1,8 @@
 import React from 'react'
 import { cleanup, render } from 'react-testing-library'
-import IndexPage from '../index'
+import BoardPage from '../board'
 
 it('renders without crashing', () => {
-  render(<IndexPage columns={[]} />)
+  render(<BoardPage columns={[]} />)
   cleanup()
 })

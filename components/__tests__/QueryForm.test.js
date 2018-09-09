@@ -6,6 +6,7 @@ afterEach(cleanup)
 
 it('updates route on submit', () => {
   const router = {
+    pathname: '/',
     query: {},
     push: jest.fn(),
   }
@@ -25,6 +26,7 @@ it('updates route on submit', () => {
 
 it('does not update route on input value change', () => {
   const router = {
+    pathname: '/',
     query: {},
     push: jest.fn(),
   }
@@ -42,6 +44,7 @@ it('does not update route on input value change', () => {
 
 it('does not update route if submitted input value did not change', () => {
   const router = {
+    pathname: '/',
     query: {},
     push: jest.fn(),
   }
@@ -57,6 +60,7 @@ it('does not update route if submitted input value did not change', () => {
 
 it('renders apply button if input value changed', () => {
   const router = {
+    pathname: '/',
     query: {},
     push: jest.fn(),
   }
@@ -76,6 +80,7 @@ it('renders apply button if input value changed', () => {
 
 it('updates input value when query prop changes', () => {
   const router = {
+    pathname: '/',
     query: { query: 'foo' },
     push: jest.fn(),
   }
