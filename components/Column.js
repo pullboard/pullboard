@@ -43,12 +43,14 @@ class Column extends Component {
     const batchSize = 1 + stopIndex - startIndex
     const githubToken = cookies()[GITHUB_TOKEN_KEY]
 
-    const { data } = await searchPullRequests({
-      githubQuery,
-      endCursor,
-      batchSize,
+    const { data } = await searchPullRequests(
+      {
+        githubQuery,
+        endCursor,
+        batchSize,
+      },
       githubToken,
-    })
+    )
 
     if (data.errors) {
       throw new Error(JSON.stringify(data.errors))

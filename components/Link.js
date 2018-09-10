@@ -7,9 +7,10 @@ const Link = system(
   },
   {
     textDecoration: 'none',
+    transition: 'opacity 150ms',
 
     '&:hover': {
-      textDecoration: 'underline',
+      opacity: 0.6,
     },
   },
   'space',

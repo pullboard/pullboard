@@ -19,6 +19,7 @@ const fonts = {
     '"Helvetica Neue"',
     'sans-serif',
   ].join(', '),
+  monospace: 'Menlo, monospace',
 }
 
 const fontWeights = {
@@ -42,6 +43,7 @@ const radii = [0, 6]
 const shadows = [
   'none',
   '0 1px 2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.15)',
+  '0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1)',
 ]
 
 export default {

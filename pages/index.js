@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { withRouter } from 'next/router'
-import { arrayOf, shape, string } from 'prop-types'
+import { shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
 import Analytics from '../components/Analytics'
@@ -16,56 +16,45 @@ import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
 import columns from '../src/columns'
+import BoardCard from '../components/BoardCard'
+import Flex from '../components/Flex'
+import Header from '../components/Header'
+import { GITHUB_TOKEN_KEY, loggedIn } from '../lib/auth'
+import { getViewer } from '../lib/github'
+import { cookies, redirect } from '../lib/utils'
 
 class IndexPage extends Component {
   static propTypes = {
-    router: shape({
-      query: shape({
-        from: string,
-      }).isRequired,
+    viewer: shape({
+      login: string.isRequired,
     }).isRequired,
-    columns: arrayOf(
-      shape({
-        githubQuery: string.isRequired,
-      }),
-    ).isRequired,
   }
 
-  static async getInitialProps({ req, res, asPath, query }) {
+  static async getInitialProps({ req, res, asPath }) {
     if (!loggedIn(req)) {
       redirect(`/login?${stringify({ from: asPath })}`, res)
+      return {}
     }
 
     const githubToken = cookies(req)[GITHUB_TOKEN_KEY]
 
-    const columnsWithData = await Promise.all(
-      columns.map(async column => {
-        const githubQuery = join(column.githubQuery, query.query, 'state:open')
-        const { data } = await searchPullRequests({ githubQuery, githubToken })
+    const { data } = await getViewer(githubToken)
 
-        if (data.errors) {
-          throw new Error(JSON.stringify(data.errors))
-        }
+    if (data.errors) {
+      throw new Error(JSON.stringify(data.errors))
+    }
 
-        return { ...column, githubQuery, data: data.data.search }
-      }),
-    )
-
-    return { columns: columnsWithData }
+    return { viewer: data.data.viewer }
   }
 
   render() {
-    const { router, columns } = this.props
-
+    const { viewer } = this.props
     return (
-      <Flex flexDirection="column" height="100vh">
+      <Flex flexDirection="column" maxWidth={640} mx="auto">
         <Head>
-          <title>
-            {router.query.query
-              ? `${router.query.query} | PullBoard`
-              : 'PullBoard'}
-          </title>
+          <title>PullBoard</title>
         </Head>
+<<<<<<< HEAD
         <Analytics key={this.props.query} />
         <Flex alignItems="center" flexWrap="wrap" flex="0 0 auto" pt={4} px={4}>
           <Box flex={['1 1 auto', '0 1 auto']}>
@@ -91,14 +80,29 @@ class IndexPage extends Component {
           >
             Log out
           </ButtonOutline>
+=======
+        <Header />
+        <Flex mx={2} my={[2, 6]} maxWidth={640} flexDirection="column">
+          <BoardCard
+            title="Your pull requests"
+            avatarUrl={viewer.avatarUrl}
+            githubQuery={`author:${viewer.login}`}
+          />
+          <BoardCard
+            title="Your repositories"
+            avatarUrl={viewer.avatarUrl}
+            githubQuery={`user:${viewer.login}`}
+          />
+          {viewer.organizations.nodes.map(org => (
+            <BoardCard
+              key={org.login}
+              title={org.name}
+              avatarUrl={org.avatarUrl}
+              githubQuery={`org:${org.login}`}
+            />
+          ))}
+>>>>>>> 2572753309d20f82b5803fab436f0f3634532b9b
         </Flex>
-        <HorizontalScroll flex="1 1 auto">
-          <Flex px={2} py={4}>
-            {columns.map(column => (
-              <Column key={column.githubQuery} column={column} />
-            ))}
-          </Flex>
-        </HorizontalScroll>
       </Flex>
     )
   }

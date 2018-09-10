@@ -37,7 +37,7 @@ export class QueryForm extends Component {
     const { query } = this.state
 
     if (query !== router.query.query) {
-      router.push(`/?${stringify({ ...router.query, query })}`)
+      router.push(`${router.pathname}?${stringify({ ...router.query, query })}`)
     }
   }
 
@@ -66,7 +66,11 @@ export class QueryForm extends Component {
           />
           {hasChanged ? (
             <Button
-              style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+              style={{
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+                marginLeft: -1,
+              }}
             >
               Apply
             </Button>
