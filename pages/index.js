@@ -54,34 +54,8 @@ class IndexPage extends Component {
         <Head>
           <title>PullBoard</title>
         </Head>
-<<<<<<< HEAD
-        <Analytics key={this.props.query} />
-        <Flex alignItems="center" flexWrap="wrap" flex="0 0 auto" pt={4} px={4}>
-          <Box flex={['1 1 auto', '0 1 auto']}>
-            <Heading is="h1" fontSize={4}>
-              PullBoard <Text fontWeight="light">Alpha</Text>
-            </Heading>
-          </Box>
-          <Box
-            mx={[0, 4]}
-            mt={[4, 0]}
-            width={[1, 'auto']}
-            flex="1 1 auto"
-            order={[1, 0]}
-          >
-            <QueryForm />
-          </Box>
-          <ButtonOutline
-            alignSelf="stretch"
-            onClick={() => {
-              logOut()
-              redirect('/login')
-            }}
-          >
-            Log out
-          </ButtonOutline>
-=======
         <Header />
+        <Analytics key={this.props.query} />
         <Flex mx={2} my={[2, 6]} maxWidth={640} flexDirection="column">
           <BoardCard
             title="Your pull requests"
@@ -101,7 +75,6 @@ class IndexPage extends Component {
               githubQuery={`org:${org.login}`}
             />
           ))}
->>>>>>> 2572753309d20f82b5803fab436f0f3634532b9b
         </Flex>
       </Flex>
     )

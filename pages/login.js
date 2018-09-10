@@ -2,11 +2,8 @@ import Head from 'next/head'
 import { withRouter } from 'next/router'
 import { func, shape, string } from 'prop-types'
 import React, { Component } from 'react'
-<<<<<<< HEAD
 import Analytics from '../components/Analytics'
-=======
 import Box from '../components/Box'
->>>>>>> 2572753309d20f82b5803fab436f0f3634532b9b
 import Button from '../components/Button'
 import Flex from '../components/Flex'
 import Heading from '../components/Heading'
