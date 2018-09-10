@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { withRouter } from 'next/router'
 import { func, shape, string } from 'prop-types'
 import React, { Component } from 'react'
+import Analytics from '../components/Analytics'
 import Box from '../components/Box'
 import Button from '../components/Button'
 import Flex from '../components/Flex'
@@ -43,6 +44,7 @@ class LoginPage extends Component {
           px={5}
           mx="auto"
         >
+          <Analytics />
           <Head>
             <title>PullBoard</title>
           </Head>

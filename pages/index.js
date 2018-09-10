@@ -3,8 +3,9 @@ import { withRouter } from 'next/router'
 import { shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
-import BoardCard from '../components/BoardCard'
+import Analytics from '../components/Analytics'
 import Flex from '../components/Flex'
+import BoardCard from '../components/BoardCard'
 import Header from '../components/Header'
 import { GITHUB_TOKEN_KEY, loggedIn } from '../lib/auth'
 import { getViewer } from '../lib/github'
@@ -38,6 +39,7 @@ class IndexPage extends Component {
     const { viewer } = this.props
     return (
       <Flex flexDirection="column" maxWidth={640} mx="auto">
+        <Analytics />
         <Head>
           <title>PullBoard</title>
         </Head>

@@ -12,6 +12,7 @@ import { GITHUB_TOKEN_KEY, loggedIn } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
 import columns from '../src/columns'
+import Analytics from '../components/Analytics'
 
 class BoardPage extends Component {
   static propTypes = {
@@ -55,6 +56,7 @@ class BoardPage extends Component {
 
     return (
       <Flex flexDirection="column" height="100vh">
+        <Analytics key={router.query.query} />
         <Head>
           <title>
             {router.query.query
