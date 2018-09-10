@@ -3,7 +3,7 @@ import { withRouter } from 'next/router'
 import { arrayOf, shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
-import columns from '../src/columns'
+import Analytics from '../components/Analytics'
 import Box from '../components/Box'
 import ButtonOutline from '../components/ButtonOutline'
 import Column from '../components/Column'
@@ -11,10 +11,11 @@ import Flex from '../components/Flex'
 import Heading from '../components/Heading'
 import HorizontalScroll from '../components/HorizontalScroll'
 import QueryForm from '../components/QueryForm'
+import Text from '../components/Text'
 import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
 import { searchPullRequests } from '../lib/github'
 import { cookies, join, redirect } from '../lib/utils'
-import Text from '../components/Text'
+import columns from '../src/columns'
 
 class IndexPage extends Component {
   static propTypes = {
@@ -65,6 +66,7 @@ class IndexPage extends Component {
               : 'PullBoard'}
           </title>
         </Head>
+        <Analytics key={this.props.query} />
         <Flex alignItems="center" flexWrap="wrap" flex="0 0 auto" pt={4} px={4}>
           <Box flex={['1 1 auto', '0 1 auto']}>
             <Heading is="h1" fontSize={4}>

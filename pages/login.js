@@ -1,13 +1,14 @@
 import { withRouter } from 'next/router'
 import { func, shape, string } from 'prop-types'
 import React, { Component } from 'react'
+import Analytics from '../components/Analytics'
+import Button from '../components/Button'
+import Flex from '../components/Flex'
+import Heading from '../components/Heading'
+import Text from '../components/Text'
 import { loggedIn } from '../lib/auth'
 import { getGithubAuthUrl } from '../lib/github'
 import { redirect } from '../lib/utils'
-import Button from '../components/Button'
-import Heading from '../components/Heading'
-import Flex from '../components/Flex'
-import Text from '../components/Text'
 
 class LoginPage extends Component {
   static propTypes = {
@@ -40,6 +41,7 @@ class LoginPage extends Component {
         px={5}
         mx="auto"
       >
+        <Analytics />
         <Heading is="h1" fontSize={5} mb={6} textAlign="center">
           <Text
             fontSize={1}
