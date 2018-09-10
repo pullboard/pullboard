@@ -4,20 +4,8 @@ import { shape, string } from 'prop-types'
 import { stringify } from 'querystring'
 import React, { Component } from 'react'
 import Analytics from '../components/Analytics'
-import Box from '../components/Box'
-import ButtonOutline from '../components/ButtonOutline'
-import Column from '../components/Column'
 import Flex from '../components/Flex'
-import Heading from '../components/Heading'
-import HorizontalScroll from '../components/HorizontalScroll'
-import QueryForm from '../components/QueryForm'
-import Text from '../components/Text'
-import { GITHUB_TOKEN_KEY, loggedIn, logOut } from '../lib/auth'
-import { searchPullRequests } from '../lib/github'
-import { cookies, join, redirect } from '../lib/utils'
-import columns from '../src/columns'
 import BoardCard from '../components/BoardCard'
-import Flex from '../components/Flex'
 import Header from '../components/Header'
 import { GITHUB_TOKEN_KEY, loggedIn } from '../lib/auth'
 import { getViewer } from '../lib/github'
@@ -51,11 +39,11 @@ class IndexPage extends Component {
     const { viewer } = this.props
     return (
       <Flex flexDirection="column" maxWidth={640} mx="auto">
+        <Analytics />
         <Head>
           <title>PullBoard</title>
         </Head>
         <Header />
-        <Analytics key={this.props.query} />
         <Flex mx={2} my={[2, 6]} maxWidth={640} flexDirection="column">
           <BoardCard
             title="Your pull requests"
