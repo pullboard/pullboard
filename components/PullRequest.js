@@ -2,7 +2,7 @@ import { number, shape, string } from 'prop-types'
 import React from 'react'
 import { formatTimeDifference } from '../lib/utils'
 import Flex from './Flex'
-import Link from './Link'
+import OutboundLink from './OutboundLink'
 import StatusIcon from './StatusIcon'
 import Text from './Text'
 import { Truncate } from './Truncate'
@@ -19,20 +19,22 @@ function PullRequest({ pullRequest, ...props }) {
       {...props}
     >
       <Truncate fontSize={1} color="gray.7" lineHeight="normal">
-        <Link href={pullRequest.repository.owner.url}>
+        <OutboundLink href={pullRequest.repository.owner.url}>
           {pullRequest.repository.owner.login}
-        </Link>{' '}
+        </OutboundLink>{' '}
         <Text color="gray.5">/</Text>{' '}
-        <Link href={pullRequest.repository.url}>
+        <OutboundLink href={pullRequest.repository.url}>
           {pullRequest.repository.name}
-        </Link>
+        </OutboundLink>
       </Truncate>
       <Truncate color="gray.9" fontWeight="medium" lineHeight="normal">
-        <Link href={pullRequest.url}>{pullRequest.title}</Link>
+        <OutboundLink href={pullRequest.url}>{pullRequest.title}</OutboundLink>
       </Truncate>
       <Truncate fontSize={1} color="gray.7" lineHeight="normal">
         <StatusIcon pullRequest={pullRequest} mr={1} />#{pullRequest.number} by{' '}
-        <Link href={pullRequest.author.url}>{pullRequest.author.login}</Link>
+        <OutboundLink href={pullRequest.author.url}>
+          {pullRequest.author.login}
+        </OutboundLink>
         <Text mx={1} color="gray.5">
           ·
         </Text>
