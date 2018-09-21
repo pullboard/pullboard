@@ -1,9 +1,9 @@
 {
   "name": "pullboard",
-  "alias": "pullboard.now.sh",
+  "alias": "pullboard.io",
   "public": true,
   "env": {
     "GITHUB_CLIENT_ID": "ed28231b809fc1949110",
-    "REDIRECT_URI": "https://pullboard.now.sh/callback"
+    "REDIRECT_URI": "https://pullboard.io/callback"
   }
 }
